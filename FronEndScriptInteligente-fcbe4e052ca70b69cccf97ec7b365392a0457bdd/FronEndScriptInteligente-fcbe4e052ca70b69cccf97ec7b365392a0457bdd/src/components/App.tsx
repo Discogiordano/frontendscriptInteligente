@@ -69,6 +69,9 @@ const App: React.FC = () => {
           <Route path="/audit-activities" element={<AuditActivities />} />
           <Route path="/system-maintenance" element={<SystemMaintenance />} />
         </Routes>
+        <footer>
+          © 2024 Script Inteligente. Todos os direitos reservados.
+        </footer>
       </div>
     </Router>
   );
