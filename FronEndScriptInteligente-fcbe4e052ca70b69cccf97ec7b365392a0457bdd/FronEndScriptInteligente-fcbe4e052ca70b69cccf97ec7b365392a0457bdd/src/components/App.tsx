@@ -16,6 +16,8 @@ import AuditActivities from "../pages/AuditActivities";
 import SystemMaintenance from "../pages/SystemMaintenance";
 import "../styles/main.css";
 import homeIcon from "./images/homeIcon.ico";
+import painelFuncionarioIcon from "./images/painel_funcionario.ico";
+import painelAdmIcon from "./images/painel_adm.ico";
 
 const App: React.FC = () => {
   const [userType, setUserType] = useState<string | null>(null);
@@ -40,14 +42,18 @@ const App: React.FC = () => {
             {userType === "employee" && (
               <>
                 <li>
-                  <Link to="/employee-dashboard">Employee Dashboard</Link>
+                  <Link to="/employee-dashboard" className="nav-icon">
+                    <img src={painelFuncionarioIcon} alt="Employee Dashboard" className="nav-icon" />
+                  </Link>
                 </li>
               </>
             )}
             {userType === "admin" && (
               <>
                 <li>
-                  <Link to="/admin-dashboard">Admin Dashboard</Link>
+                  <Link to="/admin-dashboard" className="nav-icon">
+                    <img src={painelAdmIcon} alt="Admin Dashboard" className="nav-icon" />
+                  </Link>
                 </li>
               </>
             )}
