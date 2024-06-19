@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  box-sizing: border-box; /* Garante que o padding seja incluído no tamanho total */
+  box-sizing: border-box;
   width: 100%;
-  max-width: 100vw; /* Garante que o container não ultrapasse a largura da viewport */
-  overflow-x: hidden; /* Evita o transbordamento horizontal */
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -16,7 +16,7 @@ h1 {
 
 .button-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsivo para múltiplas colunas */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   width: 100%;
   max-width: 800px;
@@ -45,9 +45,9 @@ button:hover {
 }
 
 button .icon {
-  margin-right: 10px; /* Espaço entre a imagem e o texto */
-  width: 24px; /* Tamanho da imagem */
-  height: 24px; /* Tamanho da imagem */
+  margin-right: 10px; 
+  width: 24px; 
+  height: 24px; 
 }
 
 label {
