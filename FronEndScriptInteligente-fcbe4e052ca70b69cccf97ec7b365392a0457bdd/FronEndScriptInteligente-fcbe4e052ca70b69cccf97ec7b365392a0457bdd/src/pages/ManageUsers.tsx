@@ -17,18 +17,43 @@ const ManageUsers: React.FC = () => {
   const [editUser, setEditUser] = useState<User | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [userId, setUserId] = useState<string>("");
+
+  const fetchUsers = async (token: string) => {
+    try {
+      const response = await getAllUsers(token);
+      setUsers(response);
+    } catch (error) {
+      setErrorMessage("Erro ao buscar usuários.");
+    }
+  };
+
+  const fetchUserById = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setErrorMessage("Usuário não autenticado.");
+      return;
+    }
+
+    try {
+      const response = await getAllUsers(token);
+      const user = response.find((user: User) => user.id.toString() === userId);
+      if (user) {
+        setUsers([user]);
+      } else {
+        setErrorMessage("Usuário não encontrado.");
+        setUsers([]);
+      }
+    } catch (error) {
+      setErrorMessage("Erro ao buscar usuário.");
+    }
+  };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await getAllUsers(token!);
-        setUsers(response);
-      } catch (error) {
-        setErrorMessage("Erro ao buscar usuários.");
-      }
-    };
-    fetchUsers();
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchUsers(token);
+    }
   }, []);
 
   const handleEditUser = (user: User) => {
@@ -46,8 +71,7 @@ const ManageUsers: React.FC = () => {
       await updateUser(token, editUser.id.toString(), editUser);
       setSuccessMessage("Informações do usuário atualizadas com sucesso!");
       setEditUser(null);
-      const response = await getAllUsers(token);
-      setUsers(response);
+      fetchUsers(token);
     } catch (error) {
       setErrorMessage("Erro ao atualizar usuário.");
     }
@@ -63,8 +87,7 @@ const ManageUsers: React.FC = () => {
     try {
       await updateUserRole(token, userId.toString(), role);
       setSuccessMessage("Permissão do usuário atualizada com sucesso!");
-      const response = await getAllUsers(token);
-      setUsers(response);
+      fetchUsers(token);
     } catch (error) {
       setErrorMessage("Erro ao atualizar permissão do usuário.");
     }
@@ -75,6 +98,17 @@ const ManageUsers: React.FC = () => {
       <h1>Gerenciar Usuários</h1>
       {errorMessage && <p>{errorMessage}</p>}
       {successMessage && <p>{successMessage}</p>}
+      
+      <div>
+        <input
+          type="text"
+          placeholder="Buscar por ID do usuário"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <button onClick={fetchUserById}>Buscar</button>
+      </div>
+
       <ul>
         {users.map((user) => (
           <li key={user.id}>
