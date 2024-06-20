@@ -1,0 +1,155 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 20px;
+  margin: auto;
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00e6e6;
+  background-color: black;
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #00e6e6;
+  text-shadow: 0 0 5px #00e6e6;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.textarea-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  background-color: black;
+  color: #00e6e6;
+  resize: none;
+  overflow: hidden;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00b3b3;
+}
+
+.api-select-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.api-select-container label {
+  margin-bottom: 10px;
+  color: #00e6e6;
+  text-shadow: 0 0 5px #00e6e6;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  background-color: black;
+  color: #00e6e6;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 0 0 5px black;
+}
+
+button:hover {
+  background-color: #00b3b3;
+  color: black;
+}
+
+.corrections-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.correction-card {
+  border: 1px solid #00e6e6;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  color: #00e6e6;
+  display: flex;
+  flex-direction: column;
+}
+
+.correction-card p {
+  margin: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.correction-card button {
+  align-self: flex-end;
+  margin-top: 10px;
+}
+
+.selected-correction-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  background-color: black;
+  color: #00e6e6;
+  resize: none;
+  overflow: hidden;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00b3b3;
+}
+
+.execute-button {
+  margin-top: 10px;
+}
+
+.output-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #00e6e6;
+  border-radius: 5px;
+  background-color: black;
+  color: #00e6e6;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
