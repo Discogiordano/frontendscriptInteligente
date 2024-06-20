@@ -9,13 +9,16 @@ interface Script {
   id: number;
   content: string;
   userId: number;
+  username: string; // Presume que a API retorna também o nome do usuário
 }
 
 const ManageScripts: React.FC = () => {
   const [scripts, setScripts] = useState<Script[]>([]);
+  const [filteredScripts, setFilteredScripts] = useState<Script[]>([]);
   const [editScript, setEditScript] = useState<Script | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [searchUsername, setSearchUsername] = useState("");
 
   useEffect(() => {
     const fetchScripts = async () => {
@@ -23,6 +26,7 @@ const ManageScripts: React.FC = () => {
         const token = localStorage.getItem("token");
         const response = await getAllScripts(token!);
         setScripts(response);
+        setFilteredScripts(response); // Inicialmente, sem filtro
       } catch (error) {
         setErrorMessage("Erro ao buscar scripts.");
       }
@@ -49,6 +53,7 @@ const ManageScripts: React.FC = () => {
       setEditScript(null);
       const response = await getAllScripts(token);
       setScripts(response);
+      setFilteredScripts(response); // Atualiza a lista filtrada
     } catch (error) {
       setErrorMessage("Erro ao atualizar script.");
     }
@@ -66,8 +71,23 @@ const ManageScripts: React.FC = () => {
       setSuccessMessage("Script deletado com sucesso!");
       const response = await getAllScripts(token);
       setScripts(response);
+      setFilteredScripts(response); // Atualiza a lista filtrada
     } catch (error) {
       setErrorMessage("Erro ao deletar script.");
+    }
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchUsername(value);
+
+    if (value === "") {
+      setFilteredScripts(scripts); // Mostra todos os scripts se o campo de busca estiver vazio
+    } else {
+      const filtered = scripts.filter((script) =>
+        script.username.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredScripts(filtered);
     }
   };
 
@@ -76,9 +96,16 @@ const ManageScripts: React.FC = () => {
       <h1>Gerenciar Scripts</h1>
       {errorMessage && <p>{errorMessage}</p>}
       {successMessage && <p>{successMessage}</p>}
+      <input
+        type="text"
+        placeholder="Buscar por nome de usuário"
+        value={searchUsername}
+        onChange={handleSearchChange}
+      />
       <ul>
-        {scripts.map((script) => (
+        {filteredScripts.map((script) => (
           <li key={script.id}>
+            <p>Usuário: {script.username}</p>
             <p>Conteúdo: {script.content}</p>
             <button onClick={() => handleEditScript(script)}>Editar</button>
             <button onClick={() => handleDeleteScript(script.id)}>
