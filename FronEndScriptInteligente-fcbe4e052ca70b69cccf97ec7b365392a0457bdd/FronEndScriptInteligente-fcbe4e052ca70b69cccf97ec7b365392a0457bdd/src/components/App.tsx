@@ -43,7 +43,11 @@ const App: React.FC = () => {
               <>
                 <li>
                   <Link to="/employee-dashboard" className="nav-icon">
-                    <img src={painelFuncionarioIcon} alt="Employee Dashboard" className="nav-icon" />
+                    <img
+                      src={painelFuncionarioIcon}
+                      alt="Employee Dashboard"
+                      className="nav-icon"
+                    />
                   </Link>
                 </li>
               </>
@@ -52,7 +56,11 @@ const App: React.FC = () => {
               <>
                 <li>
                   <Link to="/admin-dashboard" className="nav-icon">
-                    <img src={painelAdmIcon} alt="Admin Dashboard" className="nav-icon" />
+                    <img
+                      src={painelAdmIcon}
+                      alt="Admin Dashboard"
+                      className="nav-icon"
+                    />
                   </Link>
                 </li>
               </>
@@ -62,14 +70,20 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login onLogin={setUserType} />} />
-          <Route path="/register" element={<Register onRegister={setUserType} />} />
+          <Route
+            path="/register"
+            element={<Register onRegister={setUserType} />}
+          />
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="/user-home" element={<UserHome />} />
           <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
           <Route path="/view-user-scripts" element={<ViewUserScripts />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/configure-integrations" element={<ConfigureIntegrations />} />
+          <Route
+            path="/configure-integrations"
+            element={<ConfigureIntegrations />}
+          />
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/manage-scripts" element={<ManageScripts />} />
           <Route path="/audit-activities" element={<AuditActivities />} />
